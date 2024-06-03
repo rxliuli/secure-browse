@@ -104,6 +104,8 @@ export default defineBackground(() => {
   updateExtensionsList()
   browser.management.onInstalled.addListener(updateExtensionsList)
   browser.management.onUninstalled.addListener(updateExtensionsList)
+  browser.management.onEnabled.addListener(updateExtensionsList)
+  browser.management.onDisabled.addListener(updateExtensionsList)
 
   browser.runtime.onInstalled.addListener(enableExtensions)
 })

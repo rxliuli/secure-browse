@@ -12,7 +12,11 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:deploy": "gh-pages -d docs/.vitepress/dist"
   },
   "dependencies": {
     "picomatch": "^4.0.2",
@@ -21,8 +25,10 @@
   "devDependencies": {
     "@types/micromatch": "^4.0.7",
     "@types/picomatch": "^2.3.3",
+    "gh-pages": "^6.1.1",
     "typescript": "^5.3.3",
     "vite-plugin-solid": "^2.8.0",
+    "vitepress": "^1.2.2",
     "vitest": "^1.6.0",
     "wxt": "^0.18.0"
   }
