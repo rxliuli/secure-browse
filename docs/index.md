@@ -1,4 +1,21 @@
-# Secure Browse
+---
+layout: home
+title: Secure Browse
+
+hero:
+  name: Secure Browse
+  text: Extension Manager for Financial Sites
+  image:
+    src: ./assets/disable.png
+    alt: Secure Browse
+  actions:
+    - theme: brand
+      text: Install Extension
+      link: https://github.com/rxliuli/secure-browse/releases/latest
+    - theme: alt
+      text: Star on GitHub
+      link: https://github.com/rxliuli/secure-browse
+---
 
 ## Overview
 
