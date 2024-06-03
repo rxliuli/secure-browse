@@ -15,9 +15,7 @@
 
 以下扩展包含在默认白名单中，并在您访问金融网站时保持启用：
 
-- **扩展 ID 1**
-- **扩展 ID 2**
-- **扩展 ID 3**
+- **uBlock Origin: cjpalhdlnbpafiamejdnhcphjbkeiagm**
 
 ## 支持的金融网站
 
