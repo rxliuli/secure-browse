@@ -47,8 +47,8 @@
 
 ## 截图
 
-![Screenshot 1](./docs/assets/enable.png)
-![Screenshot 2](./docs/assets/disable.png)
+![Screenshot 1](./docs/public/enable.png)
+![Screenshot 2](./docs/public/disable.png)
 
 ## 联系方式
 

@@ -47,8 +47,8 @@ If you encounter any issues or have any questions, please open an issue in the G
 
 ## Screenshots
 
-![Screenshot 1](./docs/assets/enable.png)
-![Screenshot 2](./docs/assets/disable.png)
+![Screenshot 1](./docs/public/enable.png)
+![Screenshot 2](./docs/public/disable.png)
 
 ## Contact
 

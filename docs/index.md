@@ -6,7 +6,7 @@ hero:
   name: Secure Browse
   text: Extension Manager for Financial Sites
   image:
-    src: ./assets/disable.png
+    src: /disable.png
     alt: Secure Browse
   actions:
     - theme: brand
@@ -66,8 +66,8 @@ If you encounter any issues or have any questions, please open an issue in the G
 
 ## Screenshots
 
-![Screenshot 1](./assets/enable.png)
-![Screenshot 2](./assets/disable.png)
+![Screenshot 1](/enable.png)
+![Screenshot 2](/disable.png)
 
 ## Contact
 
