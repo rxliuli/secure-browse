@@ -1,1 +1,0 @@
-import{_ as e,c as o,o as t,a1 as i}from"./chunks/framework.DCKU21so.js";const m=JSON.parse('{"title":"Privacy Policy","description":"","frontmatter":{},"headers":[],"relativePath":"privacy.md","filePath":"privacy.md"}'),a={name:"privacy.md"},n=i("",24),r=[n];function s(c,l,h,u,d,y){return t(),o("div",null,r)}const f=e(a,[["render",s]]);export{m as __pageData,f as default};
