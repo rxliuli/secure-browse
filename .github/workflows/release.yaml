@@ -1,55 +1,71 @@
-name: Release
+env:
+  DIRECTORY: .output
+  PROJECT_NAME: plex-skipper
+
+name: Deploy
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: ['main']
+  pull_request:
+    branches: ['main']
 
 jobs:
-  release:
-    permissions:
-      contents: write
+  Version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      version_changed: ${{ steps.check_version.outputs.version_changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for version change
+        id: check_version
+        run: |
+          if git diff --name-only HEAD~1..HEAD | grep -q '^package\.json$'; then
+            VERSION_CHANGED=1
+          else
+            VERSION_CHANGED=0
+          fi
+          echo "version_changed=$VERSION_CHANGED" >> "$GITHUB_OUTPUT"
+      - name: Get version
+        if: ${{ steps.check_version.outputs.version_changed == '1' }}
+        id: get_version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+  Submit:
+    needs: Version
+    if: ${{ needs.Version.outputs.version_changed == '1' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
         with:
-          fetch-depth: 0 # Not needed if lastUpdated is not enabled
-      # - uses: pnpm/action-setup@v2 # Uncomment this if you're using pnpm
-      # - uses: oven-sh/setup-bun@v1 # Uncomment this if you're using Bun
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v3
+          version: 'latest'
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm # or pnpm / yarn
-
+          cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-
       - name: Zip extensions
         run: |
-          pnpm zip
-
-      - name: Create GitHub Release
-        id: create_release
+          pnpm run zip && 
+          pnpm run zip:firefox
+      - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: 'v${{ needs.Version.outputs.version }}'
+          name: 'v${{ needs.Version.outputs.version }}'
           draft: false
           prerelease: false
-
-      - name: Upload Chrome Extension Zip
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .output/*-chrome.zip
-          asset_name: chrome-extension-${{ github.ref }}.zip
-          asset_content_type: application/zip
+          files: |
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-chrome.zip
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-firefox.zip
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-sources.zip
