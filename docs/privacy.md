@@ -37,8 +37,7 @@ We may update this Privacy Policy from time to time to reflect changes in our pr
 
 If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
 
-- **Email**: [your-email@example.com]
-- **Mail**: [Your Company Name], [Your Address]
+- **Email**: [rxliuli@gmail.com]
 
 ---
 
