@@ -1,6 +1,6 @@
 env:
   DIRECTORY: .output
-  PROJECT_NAME: plex-skipper
+  PROJECT_NAME: secure-browse
 
 name: Deploy
 
