@@ -19,6 +19,7 @@
     "docs:deploy": "gh-pages -d docs/.vitepress/dist"
   },
   "dependencies": {
+    "@solidjs/router": "^0.13.5",
     "@webext-core/proxy-service": "^1.2.0",
     "clsx": "^2.1.1",
     "picomatch": "^4.0.2",

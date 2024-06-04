@@ -1,5 +1,6 @@
 import { isMatch } from 'picomatch'
 import { Management, Tabs } from 'wxt/browser'
+import { isDangerExt } from './utils/isDanger'
 
 const config = {
   whiteExtList: [
@@ -108,16 +109,18 @@ export default defineBackground(() => {
   })
   browser.runtime.onInstalled.addListener(async () => {
     await enableExtensions()
-    // const dangerousExtensions = (await browser.management.getAll()).filter(
-    //   (extension) => extension.permissions?.includes('cookies'),
-    // )
-    // if (dangerousExtensions.length > 0) {
-    //   await browser.windows.create({
-    //     url: browser.runtime.getURL('/popup.html'),
-    //     type: 'popup',
-    //     width: 400,
-    //     height: 600,
-    //   })
-    // }
+  })
+
+  browser.management.onInstalled.addListener(async (info) => {
+    if (!isDangerExt(info)) {
+      return
+    }
+    await browser.management.setEnabled(info.id, false)
+    await browser.windows.create({
+      url: browser.runtime.getURL(`/popup.html?id=${info.id}`),
+      type: 'popup',
+      width: 400,
+      height: 600,
+    })
   })
 })

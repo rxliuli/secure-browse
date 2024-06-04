@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.extension-status {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.extension-status.disabled {
+  color: #4caf50; /* 绿色 */
+}
+
+.extension-status.enabled {
+  color: #f44336; /* 红色 */
+}
