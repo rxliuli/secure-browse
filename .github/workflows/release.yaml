@@ -37,6 +37,8 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
   Submit:
+    permissions:
+      contents: write
     needs: Version
     if: ${{ needs.Version.outputs.version_changed == '1' }}
     runs-on: ubuntu-latest
