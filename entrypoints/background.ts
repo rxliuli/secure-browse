@@ -92,14 +92,6 @@ export default defineBackground(() => {
     await handleTab(tab)
   })
 
-  // Restore extensions when the extension is reloaded or the browser starts
-  browser.runtime.onStartup.addListener(async () => {
-    disabledExtensions = ((
-      await browser.storage.local.get('disabledExtensions')
-    ).disabledExtensions ?? []) as string[]
-    await enableExtensions()
-  })
-
   // Listen for extension installation and removal to update the list
   updateExtensionsList()
   browser.management.onInstalled.addListener(updateExtensionsList)
@@ -107,5 +99,25 @@ export default defineBackground(() => {
   browser.management.onEnabled.addListener(updateExtensionsList)
   browser.management.onDisabled.addListener(updateExtensionsList)
 
-  browser.runtime.onInstalled.addListener(enableExtensions)
+  // Restore extensions when the extension is reloaded or the browser starts
+  browser.runtime.onStartup.addListener(async () => {
+    disabledExtensions = ((
+      await browser.storage.local.get('disabledExtensions')
+    ).disabledExtensions ?? []) as string[]
+    await enableExtensions()
+  })
+  browser.runtime.onInstalled.addListener(async () => {
+    await enableExtensions()
+    // const dangerousExtensions = (await browser.management.getAll()).filter(
+    //   (extension) => extension.permissions?.includes('cookies'),
+    // )
+    // if (dangerousExtensions.length > 0) {
+    //   await browser.windows.create({
+    //     url: browser.runtime.getURL('/popup.html'),
+    //     type: 'popup',
+    //     width: 400,
+    //     height: 600,
+    //   })
+    // }
+  })
 })
