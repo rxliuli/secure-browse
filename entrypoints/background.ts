@@ -121,6 +121,8 @@ export default defineBackground(() => {
       type: 'popup',
       width: 400,
       height: 600,
+      top: 100,
+      focused: true,
     })
   })
 })

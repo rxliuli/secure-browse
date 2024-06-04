@@ -1,3 +1,7 @@
+#root {
+  margin: 0 auto;
+}
+
 .item {
   display: flex;
   justify-content: space-between;

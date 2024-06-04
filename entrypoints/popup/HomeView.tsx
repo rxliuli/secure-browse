@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import { createSignal, onMount } from "solid-js"
-import { Management } from "wxt/browser"
-import { isDangerExt } from "../utils/isDanger"
+import clsx from 'clsx'
+import { createSignal, onMount } from 'solid-js'
+import { Management } from 'wxt/browser'
+import { isDangerExt } from '../utils/isDanger'
 import './HomeView.css'
 
 export function HomeView() {
