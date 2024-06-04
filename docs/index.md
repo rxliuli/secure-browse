@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Install Extension
-      link: https://github.com/rxliuli/secure-browse/releases/latest
+      link: https://chromewebstore.google.com/detail/klfaejodhhokdkdnbgkjeoahnaoihjfk
     - theme: alt
       text: Star on GitHub
       link: https://github.com/rxliuli/secure-browse
