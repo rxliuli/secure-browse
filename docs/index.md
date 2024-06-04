@@ -69,6 +69,17 @@ If you encounter any issues or have any questions, please open an issue in the G
 ![Screenshot 1](/enable.png)
 ![Screenshot 2](/disable.png)
 
+## FAQ
+
+### Why is Firefox not supported?
+
+Secure Browse currently supports only the Chrome browser because the extension relies on specific Chrome APIs to manage and control other extensions. These APIs are not available in Firefox, making it impossible to achieve the same functionality. We are keeping an eye on the development of Firefox APIs and will consider supporting Firefox when feasible.
+
+Key APIs that are either nonexistent or unavailable in Firefox:
+
+- `browser.management.setEnabled`: It is not possible to disable regular extensions; only the enable/disable state of theme extensions can be modified. Reference: [Bug 1282982](https://bugzilla.mozilla.org/show_bug.cgi?id=1282982)
+- `chrome.management.uninstall`: This API, which allows uninstalling malicious extensions from a blacklist, does not exist in Firefox. Reference: [management.uninstall() - Mozilla | MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/management/uninstall)
+
 ## Contact
 
 For any inquiries, please contact us at [rxliuli@gmail.com](mailto:rxliuli@gmail.com).

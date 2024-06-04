@@ -27,11 +27,7 @@
 
 ## 安装
 
-1. **下载扩展**：从仓库克隆或下载扩展。
-2. **加载扩展**：
-   - 打开 Chrome 并导航到 `chrome://extensions/`。
-   - 通过切换右上角的开关启用开发者模式。
-   - 点击“加载已解压的扩展程序”，选择扩展目录。
+从 Chrome 扩展商店安装：<https://chromewebstore.google.com/detail/klfaejodhhokdkdnbgkjeoahnaoihjfk>
 
 ## 贡献
 
@@ -49,6 +45,17 @@
 
 ![Screenshot 1](./docs/public/enable.png)
 ![Screenshot 2](./docs/public/disable.png)
+
+## 常见问题 (FAQ)
+
+### 为什么不支持 Firefox？
+
+Secure Browse 目前仅支持 Chrome 浏览器，这是因为该扩展依赖于 Chrome 的特定 API 来管理和控制其他扩展。这些 API 在 Firefox 中不可用，因此无法实现相同的功能。我们正在关注 Firefox 的 API 发展，并将在可能的情况下考虑支持 Firefox。
+
+依赖的关键 API 在 Firefox 尚不存在或不可用
+
+- `browser.management.setEnabled`: 无法禁用普通插件，只能修改主题插件的启用状态。参考：<https://bugzilla.mozilla.org/show_bug.cgi?id=1282982>
+- `chrome.management.uninstall`: 卸载黑名单中的恶意插件，该 API 在 Firefox 中不存在。参考：<https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/management/uninstall>
 
 ## 联系方式
 
