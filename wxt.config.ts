@@ -19,8 +19,5 @@ export default defineConfig({
       target: 'esnext',
     },
     plugins: [Solid()],
-    fs: {
-      allow: ['../*.json'],
-    },
   }),
 })

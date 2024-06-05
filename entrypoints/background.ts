@@ -1,8 +1,23 @@
-import { isMatch } from 'picomatch'
 import { Management, Tabs } from 'wxt/browser'
 import { isDangerExt } from './utils/isDanger'
+import { matchesPattern } from './utils/matchesPattern'
 
-const config = {
+interface WetInfo {
+  name: string
+  id: string
+}
+
+interface SiteInfo {
+  match: string
+  examples?: string[]
+}
+
+interface Config {
+  whiteExtList: WetInfo[]
+  financialSites: SiteInfo[]
+}
+
+export const config: Config = {
   whiteExtList: [
     {
       name: 'uBlock Origin',
@@ -10,24 +25,40 @@ const config = {
     },
   ],
   financialSites: [
-    '*://*.binance.com/*',
-    '*://*.coinbase.com/*',
-    '*://*.kraken.com/*',
+    {
+      match: '*://*.binance.com/*',
+      examples: [
+        'https://www.binance.com/en/trade/BTC_USDT',
+        'https://www.binance.com/en/trade/ETH_BTC',
+      ],
+    },
+    { match: '*://*.coinbase.com/*', examples: ['https://www.coinbase.com/'] },
+    { match: '*://*.kraken.com/*', examples: ['https://www.kraken.com/'] },
     // ref: https://github.com/Tampermonkey/tampermonkey/blob/07f668cd1cabb2939220045839dec4d95d2db0c8/src/background.js#L2414
-    '*paypal.tld/*',
-    '*stripe.com/*',
-    '*://plusone.google.com/*/fastbutton*',
-    '*://platform.twitter.com/widgets/*',
-    'https://*bankamerica.tld/*',
-    'https://*deutsche-bank-24.tld/*',
-    'https://*bankofamerica.tld/*',
-    '*://www.facebook.com/plugins/*',
+    {
+      match: '*paypal.com/*',
+      examples: ['https://www.paypal.com/', 'https://www.paypal.com/c2/home'],
+    },
+    {
+      match: '*stripe.com/*',
+      examples: [
+        'https://stripe.com/',
+        'https://dashboard.stripe.com/login',
+        'https://dashboard.stripe.com/payments',
+      ],
+    },
+    { match: '*://plusone.google.com/*/fastbutton*' },
+    { match: '*://platform.twitter.com/widgets/*' },
+    { match: 'https://*bankamerica.tld/*' },
+    { match: 'https://*deutsche-bank-24.tld/*' },
+    { match: 'https://*bankofamerica.tld/*' },
+    { match: '*://www.facebook.com/plugins/*' },
   ],
 }
 
 const whiteList = config.whiteExtList.map((it) => it.id)
 
-const financialSites = config.financialSites
+const financialSites = config.financialSites.map((it) => it.match)
 
 let extensionsList: Management.ExtensionInfo[] = []
 async function updateExtensionsList() {
@@ -40,11 +71,6 @@ async function persistData() {
   await browser.storage.local.set({
     disabledExtensions,
   })
-}
-
-// Utility function to match URL with patterns
-function matchesPattern(url: string, patterns: string[]) {
-  return isMatch(url, patterns)
 }
 
 // Function to disable extensions not in the whitelist
