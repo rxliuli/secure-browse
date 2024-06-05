@@ -1,0 +1,22 @@
+{
+  "whiteExtList": [
+    {
+      "name": "uBlock Origin",
+      "id": "cjpalhdlnbpafiamejdnhcphjbkeiagm"
+    }
+  ],
+  "financialSites": [
+    "*://*.binance.com/*",
+    "*://*.coinbase.com/*",
+    "*://*.kraken.com/*",
+    "*paypal.tld/*",
+    "*stripe.com/*",
+    "*://plusone.google.com/*/fastbutton*",
+    "*://platform.twitter.com/widgets/*",
+    "https://*bankamerica.tld/*",
+    "https://*deutsche-bank-24.tld/*",
+    "https://*bankofamerica.tld/*",
+    "/^.*://apis.google.com/((?!render)([^/]+)/)+([^/]+)?$/",
+    "*://www.facebook.com/plugins/*"
+  ]
+}

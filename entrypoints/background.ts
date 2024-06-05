@@ -13,6 +13,15 @@ const config = {
     '*://*.binance.com/*',
     '*://*.coinbase.com/*',
     '*://*.kraken.com/*',
+    // ref: https://github.com/Tampermonkey/tampermonkey/blob/07f668cd1cabb2939220045839dec4d95d2db0c8/src/background.js#L2414
+    '*paypal.tld/*',
+    '*stripe.com/*',
+    '*://plusone.google.com/*/fastbutton*',
+    '*://platform.twitter.com/widgets/*',
+    'https://*bankamerica.tld/*',
+    'https://*deutsche-bank-24.tld/*',
+    'https://*bankofamerica.tld/*',
+    '*://www.facebook.com/plugins/*',
   ],
 }
 
