@@ -53,6 +53,9 @@ export const config: Config = {
     { match: 'https://*deutsche-bank-24.tld/*' },
     { match: 'https://*bankofamerica.tld/*' },
     { match: '*://www.facebook.com/plugins/*' },
+    { match: '*://*.htx.com/*', examples: [ 'https://www.htx.com/' ] },
+    { match: '*://*.okx.com/*', examples: [ 'https://www.okx.com/' ] },
+    { match: '*://*.bitfinex.com/*', examples: [ 'https://www.bitfinex.com/' ] },
   ],
 }
 
